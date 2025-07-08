@@ -1,33 +1,24 @@
-# vue-forms
+# Форма управления
 
-This template should help get you started developing with Vue 3 in Vite.
+Форма для управления учетными записями
 
-## Recommended IDE Setup
+## Стек
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+VueJS 3
+Pinia
+TypeScript
+Naive UI
 
-## Type Support for `.vue` Imports in TS
+## Функционал
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- Добавление формы
+- Удаление формы
+- Сохранение данных форм
 
-## Customize configuration
+## Запуск проекта
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+Установка зависимостей
+`npm install`
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+Запустить приложение
+`npm run dev`
