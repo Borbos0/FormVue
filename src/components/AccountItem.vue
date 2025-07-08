@@ -1,6 +1,6 @@
 <template>
   <n-card>
-    <n-space align="baseline">
+    <div class="account-row">
       <n-form-item
         label="Метка"
         :feedback="labelError ? 'Заполните хотя бы одну метку (макс 50 символов)' : ''"
@@ -19,6 +19,7 @@
           v-model="typeInput"
           :options="typeOptions"
           @update:value="onTypeChange"
+          style="width: 130px;"
         />
       </n-form-item>
 
@@ -50,10 +51,12 @@
         />
       </n-form-item>
 
-      <n-button type="error" ghost @click="onDelete">
-        Удалить
-      </n-button>
-    </n-space>
+       <div class="btn-del-wrapper">
+        <n-button type="error" class="btn_del" ghost @click="onDelete">
+          Удалить
+        </n-button>
+       </div>
+    </div>
   </n-card>
 </template>
 

@@ -2,3 +2,15 @@
   padding: 0;
   margin: 0;
 }
+.header {
+  padding: 15px;
+}
+.account-row {
+  display: flex;
+  gap: 18px;
+}
+.btn-del-wrapper {
+  display: flex;
+  align-items: flex-end;
+  height: 60px;
+}

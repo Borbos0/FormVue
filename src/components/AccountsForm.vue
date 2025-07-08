@@ -1,7 +1,7 @@
 <template>
   <div>
-    <n-space align="center">
-      <n-h2>Управление учетными записями</n-h2>
+    <n-space align="center" class="header">
+      <h2>Управление учетными записями</h2>
       <n-button @click="handleAddAccount" type="primary">Добавить</n-button>
     </n-space>
     <n-alert type="info" class="mt-3">
