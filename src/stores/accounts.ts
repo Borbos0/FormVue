@@ -29,6 +29,7 @@ export const useAccountsStore = defineStore('accounts', {
       const idx = this.accounts.findIndex(acc => acc.id === id)
       if (idx !== -1) {
         this.accounts[idx] = { ...this.accounts[idx], ...patch }
+        console.log(this.accounts[idx])
         saveToStorage(this.accounts)
       }
     },

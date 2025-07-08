@@ -7,7 +7,7 @@
         :validation-status="labelError ? 'error' : undefined"
       >
         <n-input
-          v-model="labelInput"
+          v-model:value="labelInput"
           :maxlength="50"
           placeholder="Метки через ;"
           @blur="onLabelBlur"
@@ -16,7 +16,7 @@
 
       <n-form-item label="Тип записи">
         <n-select
-          v-model="typeInput"
+          v-model:value="typeInput"
           :options="typeOptions"
           @update:value="onTypeChange"
           style="width: 130px;"
@@ -29,7 +29,7 @@
         :validation-status="loginError ? 'error' : undefined"
       >
         <n-input
-          v-model="loginInput"
+          v-model:value="loginInput"
           :maxlength="100"
           placeholder="Логин"
           @blur="onLoginBlur"
@@ -43,7 +43,7 @@
         :validation-status="passwordError ? 'error' : undefined"
       >
         <n-input
-          v-model="passwordInput"
+          v-model:value="passwordInput"
           :maxlength="100"
           type="password"
           placeholder="Пароль"
