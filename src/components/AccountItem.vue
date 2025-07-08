@@ -30,7 +30,7 @@
       >
         <n-input
           v-model:value="loginInput"
-          :maxlength="100"
+          :maxlength="5"
           placeholder="Логин"
           @blur="onLoginBlur"
         />
@@ -61,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs } from 'vue'
+import { ref, toRefs, watch } from 'vue'
 import type { Account, AccountType } from '@/types/account'
 
 const props = defineProps<{
@@ -83,33 +83,53 @@ const labelError = ref(false)
 const loginError = ref(false)
 const passwordError = ref(false)
 
+watch(account, (newAcc) => {
+  labelInput.value = newAcc.label.map(l => l.text).join(';')
+  loginInput.value = newAcc.login
+  passwordInput.value = newAcc.password ?? ''
+})
+
 const typeOptions = [
   { label: 'LDAP', value: 'LDAP' },
   { label: 'Локальная', value: 'Локальная' }
 ]
 
-function validate() {
+function validateLabel(): boolean {
   labelError.value = false
-  loginError.value = false
-  passwordError.value = false
-
   const labels = labelInput.value
     .split(';')
     .map(l => l.trim())
     .filter(Boolean)
-  if (labels.some(l => l.length > 50)) labelError.value = true
-
-  if (!loginInput.value || loginInput.value.length > 100) loginError.value = true
-
-  if (typeInput.value === 'Локальная') {
-    if (!passwordInput.value || passwordInput.value.length > 100) passwordError.value = true
+  if (labels.some(l => l.length > 50)) {
+    labelError.value = true
+    return false
   }
-
-  return !labelError.value && !loginError.value && !passwordError.value
+  return true
 }
 
+function validateLogin(): boolean {
+  loginError.value = false
+  if (!loginInput.value || loginInput.value.length > 100) {
+    loginError.value = true
+    return false
+  }
+  return true
+}
+
+function validatePassword(): boolean {
+  passwordError.value = false
+  if (typeInput.value === 'Локальная') {
+    if (!passwordInput.value || passwordInput.value.length > 100) {
+      passwordError.value = true
+      return false
+    }
+  }
+  return true
+}
+
+
 function onLabelBlur() {
-  if (validate()) {
+  if (validateLabel()) {
     emit('update', account.value.id, {
       label: labelInput.value
         .split(';')
@@ -120,12 +140,12 @@ function onLabelBlur() {
   }
 }
 function onLoginBlur() {
-  if (validate()) {
+  if (validateLogin()) {
     emit('update', account.value.id, { login: loginInput.value })
   }
 }
 function onPasswordBlur() {
-  if (validate()) {
+  if (validatePassword()) {
     emit('update', account.value.id, { password: passwordInput.value })
   }
 }
